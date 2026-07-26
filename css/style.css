@@ -1,0 +1,925 @@
+/* ==========================================================================
+   SafeFamily Guard - 現代化設計系統 (Design System & CSS)
+   ========================================================================== */
+
+/* 1. 全域變數與主題色彩 */
+:root {
+  --primary-color: #1e3a8a;
+  --primary-light: #3b82f6;
+  --primary-gradient: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+  --secondary-color: #0f766e;
+  --secondary-gradient: linear-gradient(135deg, #0d9488 0%, #059669 100%);
+  
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --card-border: rgba(226, 232, 240, 0.8);
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  
+  --danger-color: #dc2626;
+  --danger-light: #fee2e2;
+  --warning-color: #d97706;
+  --warning-light: #fef3c7;
+  --safe-color: #16a34a;
+  --safe-light: #dcfce7;
+  
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 20px 25px -5px rgba(15, 23, 42, 0.12), 0 10px 10px -5px rgba(15, 23, 42, 0.04);
+  
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  
+  --base-font-size: 16px;
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 長輩大字體模式 */
+body.senior-mode {
+  --base-font-size: 20px;
+}
+
+/* 高對比模式 */
+body.high-contrast-mode {
+  --bg-gradient: #ffffff;
+  --card-bg: #ffffff;
+  --card-border: #000000;
+  --text-main: #000000;
+  --text-muted: #111111;
+  --primary-color: #000080;
+  --primary-gradient: #000080;
+}
+
+/* 2. 基礎重置與排版 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--base-font-size);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding-bottom: 90px; /* 為底部選單留空間 */
+}
+
+/* 3. 頁首 Navigation & Header */
+.app-header {
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--card-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.brand-icon {
+  font-size: 1.8rem;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.accessibility-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-toggle {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: var(--text-main);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: var(--transition-fast);
+}
+
+.btn-toggle:hover, .btn-toggle.active {
+  background: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+}
+
+/* 4. Hero Banner */
+.hero-section {
+  max-width: 1200px;
+  margin: 1.5rem auto 1rem;
+  padding: 0 1.5rem;
+}
+
+.hero-card {
+  background: var(--primary-gradient);
+  color: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 650px;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  padding: 0.25rem 0.85rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  margin-bottom: 1.25rem;
+}
+
+.hero-quick-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-hero {
+  background: #ffffff;
+  color: var(--primary-color);
+  border: none;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-hero:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-hero-outline {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-hero-outline:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.hero-illustration {
+  font-size: 5.5rem;
+  z-index: 2;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* 5. 導覽分頁 (Tabs Container) */
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 0.4rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--card-border);
+  overflow-x: auto;
+}
+
+.tab-btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.tab-btn.active {
+  background: #ffffff;
+  color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 6. 分頁內容區域 (Tab Panels) */
+.tab-panel {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 通用卡片外觀 */
+.content-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color);
+}
+
+/* 7. 互動式診斷儀 Panel (Tab 1) */
+.diagnostic-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .diagnostic-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.form-textarea {
+  width: 100%;
+  min-height: 130px;
+  padding: 0.85rem;
+  border: 2px solid #cbd5e1;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text-main);
+  resize: vertical;
+  transition: var(--transition-fast);
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.checklist-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: #f8fafc;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.checkbox-item:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 1.3rem;
+  height: 1.3rem;
+  margin-top: 0.15rem;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+}
+
+.checkbox-text {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.btn-submit {
+  width: 100%;
+  background: var(--primary-gradient);
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn-submit:hover {
+  opacity: 0.95;
+  transform: translateY(-2px);
+}
+
+/* 診斷結果面板 */
+.result-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  box-shadow: var(--shadow-md);
+}
+
+.result-gauge {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 900;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-normal);
+}
+
+.result-gauge.safe { background: var(--secondary-gradient); }
+.result-gauge.warning { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+.result-gauge.danger { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+
+.gauge-score { font-size: 2.2rem; line-height: 1; }
+.gauge-label { font-size: 0.85rem; opacity: 0.9; margin-top: 0.2rem; }
+
+.result-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+.result-desc { color: var(--text-muted); font-size: 1rem; margin-bottom: 1.25rem; }
+
+.result-advice-box {
+  background: #f8fafc;
+  border-left: 4px solid var(--primary-color);
+  padding: 1rem;
+  text-align: left;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+}
+
+.trigger-list {
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.trigger-item {
+  background: #fff5f5;
+  border: 1px solid #fed7d7;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.trigger-item-title { font-weight: 700; color: var(--danger-color); }
+.trigger-item-hint { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.15rem; }
+
+/* 8. 擬真測驗 Panel (Tab 2) */
+.quiz-container {
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.quiz-progress-bar-container {
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.quiz-progress-bar {
+  height: 100%;
+  background: var(--primary-gradient);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* 擬真 LINE 與簡訊聊天視窗 */
+.chat-window {
+  background: #7494c0; /* LINE 經典藍綠背景 */
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 1.5rem;
+}
+
+.chat-window.type-SMS {
+  background: #f1f5f9;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.chat-window.type-SMS .chat-header {
+  background: #ffffff;
+  color: var(--text-main);
+  border: 1px solid #cbd5e1;
+}
+
+.chat-avatar {
+  width: 42px;
+  height: 42px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.chat-user-info { flex: 1; }
+.chat-user-name { font-weight: 800; font-size: 1.05rem; }
+.chat-user-time { font-size: 0.75rem; opacity: 0.8; }
+
+.chat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chat-bubble-received {
+  align-self: flex-start;
+  background: #ffffff;
+  color: #0f172a;
+  padding: 0.85rem 1.1rem;
+  border-radius: 4px 18px 18px 18px;
+  max-width: 90%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.chat-window.type-SMS .chat-bubble-received {
+  background: #e2e8f0;
+  border-radius: 18px 18px 18px 4px;
+}
+
+/* 測驗選項 */
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.option-btn {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.option-btn:hover {
+  border-color: var(--primary-light);
+  background: #f8fafc;
+  transform: translateX(4px);
+}
+
+/* 9. 案例庫 Panel (Tab 3) */
+.scam-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.scam-card {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+}
+
+.scam-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-light);
+}
+
+.scam-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.scam-icon {
+  font-size: 2.2rem;
+}
+
+.scam-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary-color);
+}
+
+.scam-severity {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 20px;
+  background: var(--danger-light);
+  color: var(--danger-color);
+  margin-left: auto;
+}
+
+.scam-tagline {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  background: #f8fafc;
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+}
+
+.scam-section-label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.scam-indicators-list {
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.scam-indicators-list li {
+  margin-bottom: 0.25rem;
+}
+
+.scam-advice-box {
+  background: var(--safe-light);
+  color: #065f46;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* 10. 防詐五步驟與官方工具 Panel (Tab 4) */
+.five-steps-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.step-card {
+  background: #ffffff;
+  border-radius: var(--radius-sm);
+  padding: 1.25rem;
+  text-align: center;
+  border-top: 5px solid var(--primary-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.step-number {
+  font-size: 1.4rem;
+  font-weight: 900;
+  margin-bottom: 0.25rem;
+}
+
+.step-title {
+  font-weight: 800;
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.step-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.tool-card {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+}
+
+.tool-badge {
+  display: inline-block;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+}
+
+.tool-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+
+.tool-org {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.tool-desc {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.btn-tool-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: var(--primary-color);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+}
+
+.btn-tool-link:hover {
+  background: var(--primary-light);
+}
+
+/* 11. 家庭求助電話卡 (Family Call Card) */
+.family-contacts-card {
+  background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+  border: 2px dashed #f59e0b;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.contact-input-box {
+  background: #ffffff;
+  padding: 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid #fcd34d;
+}
+
+.contact-input-box label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #92400e;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.contact-input-box input {
+  width: 100%;
+  padding: 0.4rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+/* 12. Modal 對話框 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  max-width: 550px;
+  width: 100%;
+  padding: 1.75rem;
+  box-shadow: var(--shadow-lg);
+  animation: modalPop 0.3s ease-out;
+}
+
+@keyframes modalPop {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.modal-icon {
+  font-size: 2.2rem;
+}
+
+.modal-title {
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.modal-body {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* 13. 浮動求助懸浮按鈕 Floating Action Button */
+.fab-165 {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+  padding: 0.85rem 1.35rem;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 10px 20px rgba(220, 38, 38, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 90;
+  transition: var(--transition-fast);
+}
+
+.fab-165:hover {
+  transform: scale(1.05);
+  box-shadow: 0 14px 25px rgba(220, 38, 38, 0.5);
+}
+
+/* 14. 頁尾 Footer */
+.app-footer {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--card-border);
+  margin-top: 3rem;
+}

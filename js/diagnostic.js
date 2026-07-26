@@ -123,19 +123,19 @@ window.DiagnosticEngine = {
 
     if (isHealthRumorSpecial) {
       level = 'danger';
-      levelTitle = '❌ 網路健康假新聞與謠言 🔴';
-      levelDesc = '經權威醫學專家與事實查核機構比對，此訊息為流傳多年的不實網路謠言！';
-      actionAdvice = '❌ 查證結論：這是一則流傳多年的「網路健康假新聞與謠言」！請勿轉發！\n\n【三大漏洞解析】\n1. 電鍋用自來水蒸食物，水蒸氣會帶走餘氯，絕不會致癌（已故長庚林杰樑醫師生前已親自澄清）。\n2. 抑癌蔬菜百分比排行榜為缺乏醫學根據之偽科學，無任何權威機構證實。\n3. 文章冒用名醫名義並進行情緒勒索（稱轉發救人一命），請告知家人勿再散布！';
+      levelTitle = '❌ 網路健康假新聞 / 謠言 🔴';
+      levelDesc = '這是假的！請告訴家人千萬不要相信與轉發喔！';
+      actionAdvice = '❌ 查證結論：這是流傳多年的網路謠言，請勿轉發！\n\n1. 用自來水蒸東西很安全，絕不會致癌！\n2. 蔬菜抑癌百分比是假的，沒有醫學根據。\n3. 請別被「轉發救人」的話騙囉！';
     } else if (totalScore >= 50) {
       level = 'danger';
-      levelTitle = '高度危險詐騙/假訊息 🔴';
-      levelDesc = '此訊息包含多重極危險詐騙特徵！非常可能為詐騙陷阱或假新聞！';
-      actionAdvice = '🚨 請絕對不要進行匯款、點擊連結、提供驗證碼或轉發！請使用下方按鈕一鍵向 165、Cofacts 或 MyGoPen 求證！';
+      levelTitle = '高度危險詐騙 / 假訊息 🔴';
+      levelDesc = '非常危險！極可能為詐騙陷阱或假新聞！';
+      actionAdvice = '🚨 請絕對不要匯款、點連結、給驗證碼或轉發！請使用下方按鈕向 165 或 Cofacts 求證。';
     } else if (totalScore >= 20) {
       level = 'warning';
       levelTitle = '疑慮訊息 / 需查核 🟡';
-      levelDesc = '此訊息帶有部分可疑特徵或不實內容風險，請勿冒然跟從訊息指示。';
-      actionAdvice = '⚠️ 請先使用下方 165、LINE 官方查證或 Cofacts 按鈕進行線上比對！';
+      levelDesc = '訊息帶有可疑特徵，請勿冒然照著做。';
+      actionAdvice = '⚠️ 訊息有疑慮，請先點擊下方按鈕進行線上比對！';
     }
 
     return {

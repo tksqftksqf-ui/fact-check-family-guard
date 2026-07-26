@@ -46,10 +46,35 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // 全域切換 Tab 函式
+  // 全域切換 Tab 函式 (同步更新桌面頂部與手機底部導覽列)
   window.switchTab = function (tabId) {
-    const targetBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
-    if (targetBtn) targetBtn.click();
+    const desktopBtns = document.querySelectorAll('.tab-btn');
+    const mobileBtns = document.querySelectorAll('.mobile-nav-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    desktopBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
+    mobileBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
+    tabPanels.forEach(p => p.classList.toggle('active', p.id === `panel-${tabId}`));
+  };
+
+  // 長輩友善：一鍵範例訊息快捷帶入並發起分析
+  window.fillExample = function (type) {
+    const input = document.getElementById('diagnostic-text-input');
+    if (!input) return;
+
+    let sampleText = '';
+    if (type === 'sms_points') {
+      sampleText = '【中華電信】您的門號會員點數 5,300 點即將於今日 24:00 到期！請點擊官方連結 http://cht-vip-claim.top 兌換商品，逾期無效。';
+    } else if (type === 'stock_group') {
+      sampleText = '恭喜您獲得【台股翻倍計畫】名額！張老師今日佈局內線飆股，預計爆賺 300%！請加入 LINE 下載 VIP 交易 App，保證獲利！';
+    } else if (type === 'water_steam') {
+      sampleText = '轉發救人一命！已故長庚林教授稱：電鍋蒸東西一定要用開水或過濾水，直接用自來水有氯，蒸氣蓋著會包覆在食物上致癌！';
+    }
+
+    input.value = sampleText;
+    
+    // 自動觸發安全分析
+    handleDiagnostic();
   };
 
   // 4. 渲染診斷儀勾選清單 (Diagnostic Checklist)

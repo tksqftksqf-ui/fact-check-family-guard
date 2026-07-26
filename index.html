@@ -91,7 +91,16 @@
           <div class="diagnostic-form-box">
             <div class="form-group">
               <label for="diagnostic-text-input" class="form-label">📝 步驟 1：貼上或輸入收到的可疑訊息內容</label>
-              <textarea id="diagnostic-text-input" class="form-textarea" placeholder="例如：【中華電信】您的點數即將到期，請點擊 http://bit.ly/xxxx 領取 iPhone..."></textarea>
+
+              <!-- 一鍵帶入常見範例 (長輩友善免打字) -->
+              <div style="margin-bottom:0.75rem; display:flex; flex-wrap:wrap; gap:0.4rem; align-items:center;">
+                <span style="font-size:0.85rem; font-weight:700; color:var(--text-muted);">👉 點擊快捷帶入範例測試：</span>
+                <button type="button" class="btn-toggle" onclick="fillExample('sms_points')" style="font-size:0.8rem; padding:0.25rem 0.6rem;">📱 點數到期簡訊</button>
+                <button type="button" class="btn-toggle" onclick="fillExample('stock_group')" style="font-size:0.8rem; padding:0.25rem 0.6rem;">📈 飆股群組通知</button>
+                <button type="button" class="btn-toggle" onclick="fillExample('water_steam')" style="font-size:0.8rem; padding:0.25rem 0.6rem;">🍲 自來水致癌文章</button>
+              </div>
+
+              <textarea id="diagnostic-text-input" class="form-textarea" placeholder="例如：【中華電信】您的點數即將到期，請點擊 http://bit.ly/xxxx 領取..."></textarea>
             </div>
 
             <div class="form-group">
@@ -253,6 +262,28 @@
     <p>🛡️ SafeFamily Guard - 家庭防詐與訊息真偽互動辨識助手</p>
     <p style="font-size:0.85rem; margin-top:0.25rem;">內政部警政署 165 全民防詐網 / 全民共同打擊詐騙與假訊息</p>
   </footer>
+
+  <!-- 7. 手機長輩專用底部導覽列 (Mobile Bottom Navigation Bar) -->
+  <nav class="mobile-bottom-nav" aria-label="手機端長輩主導覽列">
+    <div class="mobile-nav-items">
+      <button class="mobile-nav-btn active" data-tab="diagnostic" onclick="switchTab('diagnostic')">
+        <span class="nav-icon">🛡️</span>
+        <span>訊息診斷</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="quiz" onclick="switchTab('quiz')">
+        <span class="nav-icon">🎮</span>
+        <span>實戰測驗</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="library" onclick="switchTab('library')">
+        <span class="nav-icon">📚</span>
+        <span>案例圖鑑</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="tools" onclick="switchTab('tools')">
+        <span class="nav-icon">🔍</span>
+        <span>求助心法</span>
+      </button>
+    </div>
+  </nav>
 
   <!-- Scripts -->
   <script src="js/data.js"></script>

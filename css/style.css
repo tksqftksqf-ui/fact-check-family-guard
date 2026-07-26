@@ -889,11 +889,11 @@ body {
   gap: 0.75rem;
 }
 
-/* 13. 浮動求助懸浮按鈕 Floating Action Button */
+/* 14. 浮動求助懸浮按鈕 Floating Action Button */
 .fab-165 {
   position: fixed;
-  bottom: 25px;
-  right: 25px;
+  bottom: 85px; /* 為手機底部導覽列留出空間 */
+  right: 20px;
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   color: #ffffff;
   padding: 0.85rem 1.35rem;
@@ -912,6 +912,138 @@ body {
 .fab-165:hover {
   transform: scale(1.05);
   box-shadow: 0 14px 25px rgba(220, 38, 38, 0.5);
+}
+
+/* 15. 手機長輩專用底部導覽列 (Mobile Bottom Navigation Bar) */
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid #cbd5e1;
+  z-index: 1000;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.mobile-nav-items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.4rem 0.25rem;
+}
+
+.mobile-nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 0.4rem 0;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: var(--transition-fast);
+}
+
+.mobile-nav-btn .nav-icon {
+  font-size: 1.4rem;
+  margin-bottom: 0.15rem;
+}
+
+.mobile-nav-btn.active {
+  color: var(--primary-color);
+  background: #eff6ff;
+}
+
+/* 16. 手機版與大字體 RWD 媒體查詢 (Mobile Responsiveness) */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 100px;
+  }
+
+  .nav-tabs {
+    display: none; /* 手機隱藏頂部分頁，改用底部大導覽列 */
+  }
+
+  .mobile-bottom-nav {
+    display: block; /* 開啟手機底部大導覽列 */
+  }
+
+  .hero-card {
+    padding: 1.5rem 1.25rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-illustration {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+  }
+
+  .hero-quick-actions {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .btn-hero {
+    width: 100%;
+    justify-content: center;
+    padding: 0.85rem;
+    font-size: 1.05rem;
+  }
+
+  /* 加大手機端複選框與觸控範圍 (Senior Touch Targets) */
+  .checkbox-item {
+    padding: 0.95rem 1.1rem;
+    font-size: 1.05rem;
+  }
+
+  .checkbox-item input[type="checkbox"] {
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-right: 0.4rem;
+  }
+
+  .form-textarea {
+    font-size: 1.1rem;
+    min-height: 150px;
+  }
+
+  .btn-submit {
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-radius: 16px;
+  }
+
+  .scam-grid, .tools-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fab-165 {
+    bottom: 75px;
+    right: 15px;
+    padding: 0.75rem 1.1rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* 長輩模式時手機底部導覽列字體同步放大 */
+body.senior-mode .mobile-nav-btn {
+  font-size: 1rem;
+}
+body.senior-mode .mobile-nav-btn .nav-icon {
+  font-size: 1.6rem;
 }
 
 /* 14. 頁尾 Footer */

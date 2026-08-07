@@ -57,6 +57,26 @@ document.addEventListener('DOMContentLoaded', function () {
     tabPanels.forEach(p => p.classList.toggle('active', p.id === `panel-${tabId}`));
   };
 
+  // 長輩二選一查證方式切換 (貼上文字 vs 上傳圖片)
+  window.selectInputMethod = function (method) {
+    const btnText = document.getElementById('btn-method-text');
+    const btnImage = document.getElementById('btn-method-image');
+    const boxText = document.getElementById('method-box-text');
+    const boxImage = document.getElementById('method-box-image');
+
+    if (method === 'text') {
+      if (btnText) { btnText.style.background = '#ffffff'; btnText.style.color = '#1e3a8a'; btnText.style.boxShadow = 'var(--shadow-sm)'; }
+      if (btnImage) { btnImage.style.background = 'transparent'; btnImage.style.color = 'var(--text-muted)'; btnImage.style.boxShadow = 'none'; }
+      if (boxText) boxText.style.display = 'block';
+      if (boxImage) boxImage.style.display = 'none';
+    } else {
+      if (btnImage) { btnImage.style.background = '#ffffff'; btnImage.style.color = '#1e3a8a'; btnImage.style.boxShadow = 'var(--shadow-sm)'; }
+      if (btnText) { btnText.style.background = 'transparent'; btnText.style.color = 'var(--text-muted)'; btnText.style.boxShadow = 'none'; }
+      if (boxText) boxText.style.display = 'none';
+      if (boxImage) boxImage.style.display = 'block';
+    }
+  };
+
   // 長輩友善：一鍵範例訊息快捷帶入並發起分析
   window.fillExample = function (type) {
     const input = document.getElementById('diagnostic-text-input');

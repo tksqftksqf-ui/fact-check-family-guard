@@ -81,15 +81,30 @@
         <div class="diagnostic-layout">
           <!-- 輸入與勾選區 -->
           <div class="diagnostic-form-box">
-            <div class="form-group">
-              <label for="diagnostic-text-input" class="form-label">📝 貼上或輸入您想查證的訊息：</label>
-              <textarea id="diagnostic-text-input" class="form-textarea" placeholder="例如：【中華電信】您的點數即將到期，或點擊下方按鈕直接上傳照片/圖片截圖..."></textarea>
+            <!-- 二選一切換標題與按鈕區 -->
+            <div style="font-weight:800; font-size:1.05rem; margin-bottom:0.6rem; color:var(--primary-color);">
+              👉 請選擇查證方式（二選一）：
+            </div>
+            
+            <div class="input-method-selector" style="display:flex; gap:0.5rem; margin-bottom:1.25rem; background:#e2e8f0; padding:0.35rem; border-radius:14px;">
+              <button type="button" class="method-tab-btn active" id="btn-method-text" onclick="selectInputMethod('text')" style="flex:1; padding:0.75rem 0.5rem; border:none; border-radius:10px; font-weight:800; font-size:1rem; cursor:pointer; background:#ffffff; color:#1e3a8a; box-shadow:var(--shadow-sm); transition:all 0.2s ease;">
+                📝 方式一：貼上文字
+              </button>
+              <button type="button" class="method-tab-btn" id="btn-method-image" onclick="selectInputMethod('image')" style="flex:1; padding:0.75rem 0.5rem; border:none; border-radius:10px; font-weight:800; font-size:1rem; cursor:pointer; background:transparent; color:var(--text-muted); transition:all 0.2s ease;">
+                📷 方式二：上傳/拍照圖片
+              </button>
             </div>
 
-            <!-- 照片 / 訊息截圖上傳專區 -->
-            <div class="image-upload-box" style="margin-bottom:1rem;">
-              <label for="image-upload-input" class="btn-toggle" style="display:inline-flex; align-items:center; gap:0.5rem; background:#eff6ff; border:2px dashed #3b82f6; color:#1e3a8a; padding:0.75rem 1rem; border-radius:12px; cursor:pointer; font-weight:800; width:100%; justify-content:center; font-size:1.05rem;">
-                <span>📷</span> 拍照或上傳照片 / 訊息截圖
+            <!-- 方式一：文字輸入區 -->
+            <div id="method-box-text" class="form-group" style="margin-bottom:1rem;">
+              <label for="diagnostic-text-input" class="form-label" style="font-size:0.95rem; color:var(--text-muted);">請將收到的文字訊息貼在此處：</label>
+              <textarea id="diagnostic-text-input" class="form-textarea" placeholder="例如：【中華電信】您的點數即將到期..."></textarea>
+            </div>
+
+            <!-- 方式二：照片 / 訊息截圖上傳區 -->
+            <div id="method-box-image" class="image-upload-box" style="display:none; margin-bottom:1rem;">
+              <label for="image-upload-input" class="btn-toggle" style="display:inline-flex; align-items:center; gap:0.5rem; background:#eff6ff; border:2px dashed #3b82f6; color:#1e3a8a; padding:1.25rem 1rem; border-radius:14px; cursor:pointer; font-weight:800; width:100%; justify-content:center; font-size:1.1rem;">
+                <span>📷</span> 點擊拍照或選擇手機中的相片截圖
               </label>
               <input type="file" id="image-upload-input" accept="image/*" style="display:none;">
               

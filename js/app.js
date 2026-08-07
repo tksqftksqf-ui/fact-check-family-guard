@@ -124,15 +124,13 @@ function renderDiagnosticChecklist() {
 
 function handleDiagnostic() {
   const textInput = document.getElementById('diagnostic-text-input')?.value || '';
-  const checkedNodes = document.querySelectorAll('input[name="diagnostic_rule"]:checked');
-  const selectedRuleIds = Array.from(checkedNodes).map(node => node.value);
 
-  if (!textInput.trim() && selectedRuleIds.length === 0) {
-    showModal('請勾選或輸入訊息', '⚠️ 請至少輸入段落文字或勾選一項特徵，方便系統為您進行安全評估！', '💡');
+  if (!textInput.trim()) {
+    showModal('請貼上或輸入訊息', '⚠️ 請將您收到的可疑簡訊、LINE 訊息或文章文字貼入框內，方便系統為您進行安全查證！', '💡');
     return;
   }
 
-  const result = window.DiagnosticEngine.analyze(selectedRuleIds, textInput);
+  const result = window.DiagnosticEngine.analyze(textInput);
 
   // 顯示結果區域
   const resultCard = document.getElementById('diagnostic-result-card');

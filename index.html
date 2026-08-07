@@ -79,11 +79,11 @@
           <!-- 輸入與勾選區 -->
           <div class="diagnostic-form-box">
             <div class="form-group">
-              <label for="diagnostic-text-input" class="form-label">📝 步驟 1：貼上或輸入收到的可疑訊息內容</label>
+              <label for="diagnostic-text-input" class="form-label">📝 貼上或輸入您想查證的訊息：</label>
 
               <!-- 一鍵帶入常見範例 (長輩友善免打字) -->
               <div style="margin-bottom:0.75rem; display:flex; flex-wrap:wrap; gap:0.4rem; align-items:center;">
-                <span style="font-size:0.85rem; font-weight:700; color:var(--text-muted);">👉 點擊快捷帶入範例測試：</span>
+                <span style="font-size:0.85rem; font-weight:700; color:var(--text-muted);">👉 點擊快捷帶入範例：</span>
                 <button type="button" class="btn-toggle" onclick="fillExample('sms_points')" style="font-size:0.8rem; padding:0.25rem 0.6rem;">📱 點數到期簡訊</button>
                 <button type="button" class="btn-toggle" onclick="fillExample('stock_group')" style="font-size:0.8rem; padding:0.25rem 0.6rem;">📈 飆股群組通知</button>
                 <button type="button" class="btn-toggle" onclick="fillExample('water_steam')" style="font-size:0.8rem; padding:0.25rem 0.6rem;">🍲 自來水致癌文章</button>
@@ -92,15 +92,8 @@
               <textarea id="diagnostic-text-input" class="form-textarea" placeholder="例如：【中華電信】您的點數即將到期，請點擊 http://bit.ly/xxxx 領取..."></textarea>
             </div>
 
-            <div class="form-group">
-              <label class="form-label">☑️ 步驟 2：勾選訊息包含的特徵（可複選）</label>
-              <div class="checklist-grid" id="diagnostic-checklist-container">
-                <!-- 由 js/data.js 動態渲染 -->
-              </div>
-            </div>
-
             <button id="btn-analyze-msg" class="btn-submit">
-              🔍 開始安全評估與分析
+              🔍 立即幫我查證
             </button>
           </div>
 

@@ -35,29 +35,24 @@ window.DiagnosticEngine = {
     { word: '發票', weight: 20, reason: '電子發票釣魚詐騙特徵' }
   ],
 
-  // 執行診斷計算
-  analyze: function (selectedRuleIds, textInput) {
+  // 執行診斷計算 (直接從貼入的文字自動分析)
+  analyze: function (textInput) {
     let totalScore = 0;
     let detectedTriggers = [];
-    let rules = window.FamilyGuardData.diagnosticRules;
     let isHealthRumorSpecial = false;
 
-    // 1. 計算勾選項目分數
-    selectedRuleIds.forEach(id => {
-      let rule = rules.find(r => r.id === id);
-      if (rule) {
-        totalScore += rule.weight;
-        detectedTriggers.push({
-          title: rule.text,
-          category: rule.category,
-          hint: rule.hint
-        });
-      }
-    });
+    if (!textInput || textInput.trim().length === 0) {
+      return {
+        score: 0,
+        level: 'safe',
+        levelTitle: '尚未輸入訊息 ℹ️',
+        levelDesc: '請先貼上訊息文字再進行查證。',
+        actionAdvice: '',
+        triggers: []
+      };
+    }
 
-    // 2. 分析文字輸入框的關鍵字
-    if (textInput && textInput.trim().length > 0) {
-      let text = textInput.trim();
+    let text = textInput.trim();
 
       // 特殊精準比對：電鍋自來水致癌 / 抑癌蔬菜排行健康謠言
       if (
@@ -110,7 +105,6 @@ window.DiagnosticEngine = {
           }
         }
       });
-    }
 
     // 分數上限限制為 100
     totalScore = Math.min(100, totalScore);

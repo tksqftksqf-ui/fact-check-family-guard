@@ -114,9 +114,14 @@
               </div>
             </div>
 
-            <button id="btn-analyze-msg" class="btn-submit">
-              🔍 立即幫我查證
-            </button>
+            <div style="display:flex; gap:0.5rem; margin-top:1rem;">
+              <button id="btn-analyze-msg" class="btn-submit" style="flex:2; margin-top:0;">
+                🔍 立即幫我查證
+              </button>
+              <button id="btn-reset-msg" type="button" onclick="resetDiagnostic()" class="btn-toggle" style="flex:1; justify-content:center; padding:0.85rem; font-size:1rem; font-weight:800; background:#f1f5f9; border-color:#cbd5e1; border-radius:var(--radius-sm);">
+                🧹 清空重置
+              </button>
+            </div>
           </div>
 
           <!-- 分析結果輸出區 -->
@@ -149,6 +154,11 @@
               <div id="result-triggers-container" class="trigger-list">
                 <!-- 觸發項目列於此 -->
               </div>
+
+              <!-- 清空並查證下一條按鈕 -->
+              <button type="button" onclick="resetDiagnostic()" class="btn-submit" style="background:#f1f5f9; color:var(--primary-color); border:1px solid #cbd5e1; box-shadow:none; margin-top:1.25rem;">
+                🔄 查證另一條訊息 (清空重新開始)
+              </button>
             </div>
 
             <!-- 預設未評估提示提示 -->

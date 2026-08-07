@@ -87,6 +87,34 @@ document.addEventListener('DOMContentLoaded', function () {
     btnMethodImage.addEventListener('click', function() { window.selectInputMethod('image'); });
   }
 
+  // 全域清空重置診斷儀函式
+  window.resetDiagnostic = function () {
+    const textarea = document.getElementById('diagnostic-text-input');
+    const imageInput = document.getElementById('image-upload-input');
+    const previewContainer = document.getElementById('image-preview-container');
+    const previewImg = document.getElementById('image-preview');
+    const statusText = document.getElementById('ocr-status-text');
+    const resultCard = document.getElementById('diagnostic-result-card');
+    const placeholder = document.getElementById('diagnostic-placeholder');
+
+    if (textarea) textarea.value = '';
+    if (imageInput) imageInput.value = '';
+    if (previewImg) previewImg.src = '';
+    if (previewContainer) previewContainer.style.display = 'none';
+    if (statusText) statusText.innerText = '⌛ 正在為您識別圖片中的文字...';
+    if (resultCard) resultCard.style.display = 'none';
+    if (placeholder) placeholder.style.display = 'block';
+
+    // 預設切回方式一 (貼上文字)
+    if (typeof window.selectInputMethod === 'function') {
+      window.selectInputMethod('text');
+    }
+
+    // 滾動回輸入框頂端
+    const formBox = document.querySelector('.diagnostic-form-box');
+    formBox?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   // 長輩友善：一鍵範例訊息快捷帶入並發起分析
   window.fillExample = function (type) {
     const input = document.getElementById('diagnostic-text-input');

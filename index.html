@@ -16,7 +16,7 @@
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
 
@@ -300,9 +300,29 @@
   </nav>
 
   <!-- Scripts -->
-  <script src="js/data.js"></script>
-  <script src="js/diagnostic.js"></script>
-  <script src="js/quiz.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/data.js?v=3"></script>
+  <script src="js/diagnostic.js?v=3"></script>
+  <script src="js/quiz.js?v=3"></script>
+  <script src="js/app.js?v=3"></script>
+  <script>
+    function selectInputMethod(method) {
+      var btnText = document.getElementById('btn-method-text');
+      var btnImage = document.getElementById('btn-method-image');
+      var boxText = document.getElementById('method-box-text');
+      var boxImage = document.getElementById('method-box-image');
+
+      if (method === 'text') {
+        if (btnText) { btnText.style.background = '#ffffff'; btnText.style.color = '#1e3a8a'; btnText.style.boxShadow = 'var(--shadow-sm)'; }
+        if (btnImage) { btnImage.style.background = 'transparent'; btnImage.style.color = 'var(--text-muted)'; btnImage.style.boxShadow = 'none'; }
+        if (boxText) boxText.style.display = 'block';
+        if (boxImage) boxImage.style.display = 'none';
+      } else {
+        if (btnImage) { btnImage.style.background = '#ffffff'; btnImage.style.color = '#1e3a8a'; btnImage.style.boxShadow = 'var(--shadow-sm)'; }
+        if (btnText) { btnText.style.background = 'transparent'; btnText.style.color = 'var(--text-muted)'; btnText.style.boxShadow = 'none'; }
+        if (boxText) boxText.style.display = 'none';
+        if (boxImage) boxImage.style.display = 'block';
+      }
+    }
+  </script>
 </body>
 </html>

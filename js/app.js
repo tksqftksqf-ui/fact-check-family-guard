@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
     tabPanels.forEach(p => p.classList.toggle('active', p.id === `panel-${tabId}`));
   };
 
-  // 長輩二選一查證方式切換 (貼上文字 vs 上傳圖片)
+  // 全域二選一查證方式切換 (貼上文字 vs 上傳圖片)
   window.selectInputMethod = function (method) {
     const btnText = document.getElementById('btn-method-text');
     const btnImage = document.getElementById('btn-method-image');
@@ -76,6 +76,16 @@ document.addEventListener('DOMContentLoaded', function () {
       if (boxImage) boxImage.style.display = 'block';
     }
   };
+
+  // 綁定方式一與方式二按鈕點擊事件
+  const btnMethodText = document.getElementById('btn-method-text');
+  const btnMethodImage = document.getElementById('btn-method-image');
+  if (btnMethodText) {
+    btnMethodText.addEventListener('click', function() { window.selectInputMethod('text'); });
+  }
+  if (btnMethodImage) {
+    btnMethodImage.addEventListener('click', function() { window.selectInputMethod('image'); });
+  }
 
   // 長輩友善：一鍵範例訊息快捷帶入並發起分析
   window.fillExample = function (type) {

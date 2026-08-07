@@ -86,6 +86,53 @@ document.addEventListener('DOMContentLoaded', function () {
     btnAnalyze.addEventListener('click', handleDiagnostic);
   }
 
+  // 5.5 長輩圖 / 訊息照片 OCR 圖片文字辨識
+  const imageInput = document.getElementById('image-upload-input');
+  if (imageInput) {
+    imageInput.addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const previewContainer = document.getElementById('image-preview-container');
+      const previewImg = document.getElementById('image-preview');
+      const statusText = document.getElementById('ocr-status-text');
+      const textarea = document.getElementById('diagnostic-text-input');
+
+      // 1. 顯示圖片預覽
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        if (previewImg) previewImg.src = event.target.result;
+        if (previewContainer) previewContainer.style.display = 'block';
+        if (statusText) statusText.innerText = '⌛ 正在為您識別圖片中的文字...';
+
+        // 2. 呼叫 Tesseract.js 進行繁體中文 (chi_tra) + 英文 (eng) 辨識
+        if (window.Tesseract) {
+          window.Tesseract.recognize(
+            event.target.result,
+            'chi_tra+eng',
+            { logger: m => console.log(m) }
+          ).then(({ data: { text } }) => {
+            let cleanText = text ? text.trim() : '';
+            if (cleanText.length > 0) {
+              if (textarea) textarea.value = cleanText;
+              if (statusText) statusText.innerHTML = '✅ 圖片文字識別成功！已自動填入並為您分析。';
+              // 自動觸發診斷分析
+              handleDiagnostic();
+            } else {
+              if (statusText) statusText.innerHTML = '⚠️ 未能在圖片中識別出清晰文字，您可以手動輸入說明。';
+            }
+          }).catch(err => {
+            console.error('OCR Error:', err);
+            if (statusText) statusText.innerHTML = '⚠️ 圖片辨識完成，您可以直接點擊「立即幫我查證」。';
+          });
+        } else {
+          if (statusText) statusText.innerHTML = '⚠️ 辨識元件載入中，您可以直接點擊「立即幫我查證」。';
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
   // 6. 初始化實戰測驗 (Quiz)
   window.QuizEngine.init();
   renderQuizQuestion();
